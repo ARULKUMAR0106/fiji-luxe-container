@@ -22,7 +22,7 @@ const App = () => (
           <Route path="/containers" element={<Containers />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/booking" element={<Booking />} />
-          <Route path="*" element={<NotFound />} />
+          
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
