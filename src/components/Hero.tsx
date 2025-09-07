@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* 3D Island Background */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-80 z-0">
         <Island3D />
       </div>
       

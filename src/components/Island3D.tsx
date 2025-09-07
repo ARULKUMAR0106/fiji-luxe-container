@@ -121,7 +121,7 @@ const Island3D = ({ className = "" }: Island3DProps) => {
     <div className={`w-full h-full ${className}`}>
       <Canvas
         camera={{ position: [8, 4, 8], fov: 50 }}
-        style={{ background: 'transparent' }}
+        style={{ background: 'linear-gradient(to bottom, #0ea5e9, #06b6d4)' }}
       >
         <Sky 
           distance={450000}
@@ -159,9 +159,9 @@ const Island3D = ({ className = "" }: Island3DProps) => {
           enableZoom={false} 
           enableRotate={true}
           autoRotate
-          autoRotateSpeed={0.2}
+          autoRotateSpeed={1}
           maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 4}
+          minPolarAngle={Math.PI / 6}
         />
       </Canvas>
     </div>
