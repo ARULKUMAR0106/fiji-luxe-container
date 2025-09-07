@@ -8,35 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Resort Design System - Fiji Container Resort */
+    --background: 220 25% 8%;
+    --foreground: 48 90% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 20% 12%;
+    --card-foreground: 48 90% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 20% 12%;
+    --popover-foreground: 48 90% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Ocean deep blue to warm gold theme */
+    --primary: 195 100% 25%;
+    --primary-foreground: 48 90% 95%;
+    --primary-glow: 195 80% 45%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 48 90% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 210 15% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 95% 65%;
+    --accent-foreground: 220 25% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 48 90% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 195 80% 45%;
 
-    --radius: 0.5rem;
+    /* Custom design tokens */
+    --ocean-deep: 200 100% 15%;
+    --ocean-light: 195 80% 45%;
+    --sunset-gold: 45 95% 65%;
+    --sunset-orange: 25 95% 60%;
+    --container-steel: 210 15% 25%;
+    --tropical-green: 150 60% 45%;
+
+    /* Gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(var(--ocean-deep)), hsl(var(--primary)));
+    --gradient-sunset: linear-gradient(135deg, hsl(var(--sunset-orange)), hsl(var(--sunset-gold)));
+    --gradient-night: linear-gradient(180deg, hsl(var(--background)), hsl(220 30% 5%));
+    --gradient-container: linear-gradient(145deg, hsl(var(--container-steel)), hsl(210 20% 35%));
+
+    /* Shadows and effects */
+    --shadow-glow: 0 0 40px hsl(var(--accent) / 0.3);
+    --shadow-container: 0 20px 60px hsl(0 0% 0% / 0.4);
+    --shadow-elegant: 0 10px 30px hsl(var(--primary) / 0.2);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +123,64 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-night);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Hero Button Variant */
+  .btn-hero {
+    @apply bg-gradient-to-r from-accent to-accent/80 text-accent-foreground;
+    @apply px-8 py-4 rounded-xl font-semibold text-lg;
+    @apply shadow-lg hover:shadow-[var(--shadow-glow)] transition-all duration-300;
+    @apply hover:scale-105 transform;
+  }
+
+  /* Container Card Effect */
+  .container-card {
+    @apply bg-gradient-to-br from-muted to-card border border-border/30;
+    @apply backdrop-blur-sm rounded-2xl overflow-hidden;
+    @apply shadow-[var(--shadow-elegant)] hover:shadow-[var(--shadow-container)];
+    @apply transition-all duration-500 hover:scale-[1.02];
+  }
+
+  /* Smooth Animations */
+  .fade-in {
+    @apply animate-[fadeIn_0.8s_ease-out];
+  }
+
+  .slide-up {
+    @apply animate-[slideUp_0.6s_ease-out];
+  }
+
+  /* Navigation Link */
+  .nav-link {
+    @apply relative text-foreground/80 hover:text-foreground transition-colors duration-300;
+    @apply after:content-[''] after:absolute after:w-0 after:h-0.5;
+    @apply after:bottom-0 after:left-0 after:bg-accent after:transition-all after:duration-300;
+    @apply hover:after:w-full;
+  }
+}
+
+@layer utilities {
+  /* Custom Keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(var(--accent) / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(var(--accent) / 0.5), 0 0 60px hsl(var(--accent) / 0.3); }
+  }
+
+  .glow-pulse {
+    animation: glow 3s ease-in-out infinite;
   }
 }
